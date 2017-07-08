@@ -1,10 +1,17 @@
 #!/bin/bash
 set -x
 
-sudo easy_install shadowsocks
+apt-get install python-setuptools
+easy_install shadowsocks
 
-cd /etc/
-sudo wget "Your shadowsocks.json here"
+cp shadowsocks_sample.json /etc/shadowsocks.json
+cp shadowsocks.conf /etc/supervisor/conf.d/shadowsocks.conf
 
-ssserver -c /etc/shadowsocks.json -d
+echo -n "Enter your server port:"
+read port
 
+iptables -I INPUT -p tcp -m tcp --dport ${port} -j ACCEPT  
+
+ssserver -c /etc/shadowsocks.json -d start
+
+exit 0
