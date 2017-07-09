@@ -1,8 +1,0 @@
-{
-    "server":"107.170.199.151",
-    "server_port":10199,
-    "local_port":1080,
-    "password":"ashayang",
-    "timeout":600,
-    "method":"rc4-md5"
-}
